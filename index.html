@@ -11,6 +11,24 @@
             box-sizing: border-box;
         }
 
+            .card-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff; /* Example button color */
+            color: white; /* Text color */
+            text-decoration: none; /* Removes underline */
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            }
+
+            .card-button:hover {
+            background-color: #0056b3; /* Darker on hover */
+            }
+
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -196,7 +214,9 @@
                     <div class="card-content">
                         <h3 class="card-title">A day in prison</h3>
                         <p class="card-text">this short film is showing A day of silence, pain, and survival, how people suffer in some prisons</p>
-                        <button class="card-button">View Project</button>
+                        <a href="prison.html" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">View Project</a>
+
+
                     </div>
                 </div>
                 <div class="card">
