@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Image Popup Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 30px;
+    }
+
+    .img-box {
+      position: relative;
+      width: 200px;
+      height: 130px;
+      cursor: pointer;
+    }
+
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .img-text {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      color: white;
+      background: rgba(0, 0, 0, 0.5);
+      font-size: 16px;
+      padding: 5px 0;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    /* Popup overlay */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .popup img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+<div class="gallery">
+  <div class="img-box" onclick="showPopup('/images/sculpt/goblin/front.jpg')">
+    <img src="/images/sculpt/goblin/front.jpg" alt="Image 1">
+    <div class="img-text">Goblin front view</div>
+  </div>
+  <div class="img-box" onclick="showPopup('/images/sculpt/goblin/2.5.jpg')">
+    <img src="/images/sculpt/goblin/2.5.jpg" alt="Image 2">
+    <div class="img-text">Goblin side </div>
+  </div>
+  <div class="img-box" onclick="showPopup('/images/sculpt/goblin/2.5 back.jpg')">
+    <img src="/images/sculpt/goblin/2.5 back.jpg" alt="Image 3">
+    <div class="img-text">Goblin back view</div>
+  </div>
+  <div class="img-box" onclick="showPopup('/images/sculpt/yoda/yodafront.jpg')">
+    <img src="/images/sculpt/yoda/yodafront.jpg" alt="Image 4">
+    <div class="img-text">Yoda Front view</div>
+  </div>
+  <div class="img-box" onclick="showPopup('/images/sculpt/yoda/yoda2.5.jpg')">
+    <img src="/images/sculpt/yoda/yoda2.5.jpg" alt="Image 5">
+    <div class="img-text">Yoda side view</div>
+  </div>
+  <div class="img-box" onclick="showPopup('/images/sculpt/raccoon/raccoon2.5.jpg')">
+    <img src="/images/sculpt/raccoon/raccoon2.5.jpg" alt="Image 6">
+    <div class="img-text">Raccoon side view</div>
+  </div>
+</div>
+
+<!-- Popup overlay -->
+<div class="popup" onclick="hidePopup()" id="popup">
+  <img id="popupImage" src="" alt="Popup Image">
+</div>
+
+<script>
+  function showPopup(src) {
+    const popup = document.getElementById('popup');
+    const popupImage = document.getElementById('popupImage');
+    popupImage.src = src;
+    popup.style.display = 'flex';
+  }
+
+  function hidePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>
+
+<a href="index.html" style="position: fixed; top: 20px; left: 20px; padding: 10px 16px; background-color: #007bff; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; z-index: 999;">
+  ⬅ Home
+</a>
