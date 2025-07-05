@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Creative Showcase</title>
+    <title>Bassam Qadumi - Creative Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -11,404 +12,908 @@
             box-sizing: border-box;
         }
 
-            .card-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff; /* Example button color */
-            color: white; /* Text color */
-            text-decoration: none; /* Removes underline */
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            }
-
-            .card-button:hover {
-            background-color: #0056b3; /* Darker on hover */
-            }
-
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #06b6d4;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1400px;
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-color);
+            transform: translateY(-100%);
+            animation: slideDown 0.8s ease forwards;
+        }
+
+        .nav-content {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
 
-        .hero {
-            text-align: center;
-            margin-bottom: 80px;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
+        .logo {
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="grain"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
         }
 
-        .section {
-            margin-bottom: 80px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            border-radius: 50px;
             font-weight: 600;
-            text-align: center;
-            margin-bottom: 50px;
-            color: white;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
         }
 
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        .shape:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { top: 60%; left: 80%; animation-delay: 5s; }
+        .shape:nth-child(3) { top: 80%; left: 20%; animation-delay: 10s; }
+        .shape:nth-child(4) { top: 40%; left: 60%; animation-delay: 15s; }
+
+        /* Main Content */
+        .main {
+            padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
+        .section {
+            margin-bottom: 6rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
         .card {
-            background: #2c2c2c;
-            border-radius: 12px;
+            background: var(--card-bg);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-            border: 1px solid #3a3a3a;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardSlideIn 0.6s ease forwards;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-image-container {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
         }
 
         .card-image {
             width: 100%;
-            height: 200px;
-            background: #8a8a8a;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .card-image {
+            transform: scale(1.1);
+        }
+
+        .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.8), rgba(6, 182, 212, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
-            font-size: 1.1rem;
-            font-weight: 500;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .card:hover .card-overlay {
+            opacity: 1;
         }
 
         .card-content {
-            padding: 25px;
+            padding: 2rem;
+        }
+
+        .card-category {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
         }
 
         .card-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: white;
-            margin-bottom: 15px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
         }
 
-        .card-text {
-            color: #b8b8b8;
+        .card-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
             line-height: 1.6;
-            margin-bottom: 25px;
-            font-size: 0.95rem;
         }
 
         .card-button {
-            background: #4a90e2;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--primary-color);
             color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
             text-decoration: none;
-            display: inline-block;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
         }
 
         .card-button:hover {
-            background: #357abd;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+            background: var(--secondary-color);
+            transform: translateX(5px);
         }
 
+        .card-button i {
+            transition: transform 0.3s ease;
+        }
+
+        .card-button:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Footer */
         .footer {
+            background: var(--bg-secondary);
+            padding: 3rem 2rem;
             text-align: center;
-            padding: 40px 0;
-            margin-top: 60px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            color: rgba(255,255,255,0.8);
+            border-top: 1px solid var(--border-color);
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            to { transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-            
-            .section-title {
-                font-size: 2rem;
+        }
+
+        @keyframes cardSlideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
             }
             
             .cards-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
+                gap: 1.5rem;
             }
             
-            .container {
-                padding: 40px 15px;
+            .card {
+                margin: 0 1rem;
+            }
+            
+            .main {
+                padding: 2rem 1rem;
             }
         }
 
-        /* Smooth scroll behavior */
-        html {
-            scroll-behavior: smooth;
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
         }
 
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        ::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.1);
+        /* Loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity 0.5s ease;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: rgba(255,255,255,0.3);
-            border-radius: 4px;
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
-        ::-webkit-scrollbar-thumb:hover {
-            background: rgba(255,255,255,0.5);
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="hero">
-            <h1>Bassam Qadumi's Portfolio</h1>
-            <p>Explore my diverse collection of projects, showcasing innovation and creativity</p>
-        </div>
-
-        <!-- Web Animations Section -->
-        <section class="section">
-            <h2 class="section-title">Animations & Short Films</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-image"><img src="images/prison.jpg" alt="" width="100%" height="100%"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">A day in prison</h3>
-                        <p class="card-text">this short film is showing A day of silence, pain, and survival, how people suffer in some prisons</p>
-                        <a href="prison.html" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">View Project</a>
-
-
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image"><img src="images/smurfs.jpg" alt="" width="100%" height="100%"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Hidden in magical woods</h3>
-                        <p class="card-text">This animation is about a man hiding in a magical village while a hunter tries to find and catch him.
-It explores themes of mystery, tension, and survival in a fantasy setting.</p>
-                        <a href="smurfs.html" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">View Project</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image"><img src="images/gymnastic.png" alt="" width="100%" height="100%"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Gymnastics Animations</h3>
-                        <p class="card-text">realistic human movement Animations—headstand, handstand, roll, T-balance, and cartwheel</p>
-                        <a href="gymnastics.html" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">View Project</a>
-                    </div>
-                </div>
-                
-                
-                
-            </div>
-        </section>
-
-        <!-- Mobile Applications Section -->
-        <section class="section">
-            <h2 class="section-title">Mobile Applications</h2>
-            <div class="cards-grid">
-                <div class="card">
-                     <div class="card-image"><img src="images/app.jpg" alt="" width="100%" height="100%"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Tiny Tourists</h3>
-                        <p class="card-text">A fun and interactive app that helps kids learn about famous places, animals, and rocks in their country through maps, quizzes, and augmented reality experiences.</p>
-                         <a href="tinytourists.html" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">View Project</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image"><img src="images/deerapp.jpg" alt="" width="100%" height="100%"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Deer App.</h3>
-                        <p class="card-text">An application about several deer species became extinct over time</p>
-                        <a href="deerapp.html" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">View Project</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image">Coming Soon</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Coming Soon...</h3>
-                        <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                        <button class="card-button">View Project</button>
-                    </div>
-                </div>
-                <!-- <div class="card ">
-                    <div class="card-image">Image cap</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Language Learning</h3>
-                        <p class="card-text">Interactive language learning platform with gamification, speech recognition, and personalized learning paths for multiple languages.</p>
-                        <button class="card-button">View Project</button>
-                    </div>
-                </div> -->
-                <!-- <div class="card">
-                    <div class="card-image">Image cap</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Music Streaming</h3>
-                        <p class="card-text">High-quality music streaming app with personalized playlists, social sharing, and advanced audio controls for audiophiles.</p>
-                        <button class="card-button">View Project</button>
-                    </div>
-                </div> -->
-            </div>
-        </section>
-
-        <!-- Games Development Section -->
-        <section class="section">
-            <h2 class="section-title">Games Development</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-image"><img src="images/isometric.jpg" alt="" width="100%" height="100%"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Atari Dog</h3>
-                        <p class="card-text">A three level game with a dog as the main character trying to get his Atari back</p>
-                        <a href="ataridog.html" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">View Project</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image">Coming soon</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Coming soon...</h3>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit commodi nemo rem!</p>
-                        <button class="card-button">View Project</button>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image">Coming soon</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Coming soon...</h3>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit obcaecati, ex veniam consequatur labore maxime.</p>
-                        <button class="card-button">View Project</button>
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-
-        <!-- 3D models & sculptures Section -->
-        <section class="section">
-            <h2 class="section-title">3D models & sculptures</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-image"><img src="images/goblinfront.jpg" alt="" width="100%" height="100%"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Sculptures</h3>
-                        <p class="card-text">A Set of three Sculpted Characters</p>
-                        <a href="sculpt.html" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">View Project</a>
-                    </div>
-                </div>
-                <div class="card">
-                     <div class="card-image"><img src="images/qudsrender.png" alt="" width="100%" height="100%"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">3D Models</h3>
-                        <p class="card-text">A Collection of 3D Models</p>
-                        <a href="3d.html" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">View Project</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image">Coming soon</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Coming soon...</h3>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis impedit nobis facere natus provident incidunt.</p>
-                        <button class="card-button">View Project</button>
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-
-
-         <!-- Design and illustration -->
-        <section class="section">
-            <h2 class="section-title">Design and illustration</h2>
-            <div class="cards-grid">
-                <div class="card">
-                    <div class="card-image"><img src="images/icecream.png" alt="" width="100%" height="100%"></div>
-                    <div class="card-content">
-                        <h3 class="card-title">Illustration</h3>
-                        <p class="card-text">A Set of illstrations</p>
-                        <a href="illustrations.html" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">View Project</a>
-                    </div>
-                </div>
-                <div class="card">
-                     <div class="card-image">coming soon</div>
-                    <div class="card-content">
-                        <h3 class="card-title">coming soon...</h3>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis impedit nobis facere natus provident incidunt.</p>
-                        <a href="3d.html" style="display:inline-block; padding:10px 20px; background-color:#007bff; color:white; text-decoration:none; border-radius:8px; font-weight:bold;">View Project</a>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image">Coming soon</div>
-                    <div class="card-content">
-                        <h3 class="card-title">Coming soon...</h3>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis impedit nobis facere natus provident incidunt.</p>
-                        <button class="card-button">View Project</button>
-                    </div>
-                </div>
-                
-            </div>
-        </section>
-
-        
-        <footer class="footer">
-            <p>&copy; 2025 My Portfolio. All rights reserved.</p>
-        </footer>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
     </div>
 
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#" class="logo">Bassam Qadumi</a>
+            <ul class="nav-links">
+                <li><a href="#animations">Animations</a></li>
+                <li><a href="#mobile">Mobile Apps</a></li>
+                <li><a href="#games">Games</a></li>
+                <li><a href="#3d">3D Models</a></li>
+                <li><a href="#design">Design</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-shapes">
+            <div class="shape">
+                <i class="fas fa-cube" style="font-size: 3rem; color: rgba(255,255,255,0.1);"></i>
+            </div>
+            <div class="shape">
+                <i class="fas fa-palette" style="font-size: 2rem; color: rgba(255,255,255,0.1);"></i>
+            </div>
+            <div class="shape">
+                <i class="fas fa-gamepad" style="font-size: 2.5rem; color: rgba(255,255,255,0.1);"></i>
+            </div>
+            <div class="shape">
+                <i class="fas fa-mobile-alt" style="font-size: 2rem; color: rgba(255,255,255,0.1);"></i>
+            </div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Creative Portfolio</h1>
+            <p class="hero-subtitle">Bringing ideas to life through animation, design, and interactive experiences</p>
+            <a href="#animations" class="hero-cta">
+                <span>Explore My Work</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Animations Section -->
+        <section class="section fade-in" id="animations">
+            <div class="section-header">
+                <i class="fas fa-play-circle section-icon"></i>
+                <h2 class="section-title">Animations & Films</h2>
+                <p class="section-subtitle">Compelling visual stories that captivate and inspire</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card" style="animation-delay: 0.1s;">
+                    <div class="card-image-container">
+                        <img src="images/prison.jpg" alt="Prison Short Film" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-play" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-film"></i>
+                            <span>Short Film</span>
+                        </div>
+                        <h3 class="card-title">A Day in Prison</h3>
+                        <p class="card-description">A powerful narrative exploring silence, pain, and survival, showcasing the harsh realities of prison life.</p>
+                        <a href="prison.html" class="card-button">
+                            <span>Watch Film</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card" style="animation-delay: 0.2s;">
+                    <div class="card-image-container">
+                        <img src="images/smurfs.jpg" alt="Magical Woods Animation" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-play" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-magic"></i>
+                            <span>Animation</span>
+                        </div>
+                        <h3 class="card-title">Hidden in Magical Woods</h3>
+                        <p class="card-description">An enchanting tale of mystery and survival as a man hides in a magical village while being hunted.</p>
+                        <a href="smurfs.html" class="card-button">
+                            <span>View Animation</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card" style="animation-delay: 0.3s;">
+                    <div class="card-image-container">
+                        <img src="images/gymnastic.png" alt="Gymnastics Animation" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-play" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-running"></i>
+                            <span>Motion</span>
+                        </div>
+                        <h3 class="card-title">Gymnastics Animations</h3>
+                        <p class="card-description">Realistic human movement animations featuring headstands, handstands, rolls, T-balance, and cartwheels.</p>
+                        <a href="gymnastics.html" class="card-button">
+                            <span>See Movements</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mobile Apps Section -->
+        <section class="section fade-in" id="mobile">
+            <div class="section-header">
+                <i class="fas fa-mobile-alt section-icon"></i>
+                <h2 class="section-title">Mobile Applications</h2>
+                <p class="section-subtitle">Interactive experiences designed for the modern mobile world</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card" style="animation-delay: 0.1s;">
+                    <div class="card-image-container">
+                        <img src="images/app.jpg" alt="Tiny Tourists App" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-mobile-alt" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-child"></i>
+                            <span>Kids App</span>
+                        </div>
+                        <h3 class="card-title">Tiny Tourists</h3>
+                        <p class="card-description">An interactive educational app helping kids discover famous places, animals, and rocks through AR experiences.</p>
+                        <a href="tinytourists.html" class="card-button">
+                            <span>Explore App</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card" style="animation-delay: 0.2s;">
+                    <div class="card-image-container">
+                        <img src="images/deerapp.jpg" alt="Deer App" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-leaf" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-tree"></i>
+                            <span>Nature</span>
+                        </div>
+                        <h3 class="card-title">Deer Species App</h3>
+                        <p class="card-description">Educational application documenting various deer species and their extinction timeline throughout history.</p>
+                        <a href="deerapp.html" class="card-button">
+                            <span>Learn More</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card" style="animation-delay: 0.3s;">
+                    <div class="card-image-container">
+                        <div style="height: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: 600;">
+                            <i class="fas fa-rocket" style="font-size: 3rem; opacity: 0.7;"></i>
+                        </div>
+                        <div class="card-overlay">
+                            <i class="fas fa-clock" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-clock"></i>
+                            <span>Coming Soon</span>
+                        </div>
+                        <h3 class="card-title">Next Innovation</h3>
+                        <p class="card-description">Exciting new mobile application currently in development. Stay tuned for something amazing!</p>
+                        <button class="card-button" disabled style="opacity: 0.5;">
+                            <span>Coming Soon</span>
+                            <i class="fas fa-hourglass-half"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Games Section -->
+        <section class="section fade-in" id="games">
+            <div class="section-header">
+                <i class="fas fa-gamepad section-icon"></i>
+                <h2 class="section-title">Game Development</h2>
+                <p class="section-subtitle">Immersive gaming experiences that challenge and entertain</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card" style="animation-delay: 0.1s;">
+                    <div class="card-image-container">
+                        <img src="images/isometric.jpg" alt="Atari Dog Game" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-gamepad" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-trophy"></i>
+                            <span>Adventure</span>
+                        </div>
+                        <h3 class="card-title">Atari Dog</h3>
+                        <p class="card-description">A thrilling three-level adventure game featuring a determined dog on a quest to retrieve his beloved Atari console.</p>
+                        <a href="ataridog.html" class="card-button">
+                            <span>Play Game</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card" style="animation-delay: 0.2s;">
+                    <div class="card-image-container">
+                        <div style="height: 100%; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: 600;">
+                            <i class="fas fa-puzzle-piece" style="font-size: 3rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-clock"></i>
+                            <span>In Progress</span>
+                        </div>
+                        <h3 class="card-title">Mystery Game</h3>
+                        <p class="card-description">An innovative puzzle-adventure game currently in development. Featuring unique mechanics and captivating storylines.</p>
+                        <button class="card-button" disabled style="opacity: 0.5;">
+                            <span>In Development</span>
+                            <i class="fas fa-cog fa-spin"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" style="animation-delay: 0.3s;">
+                    <div class="card-image-container">
+                        <div style="height: 100%; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: 600;">
+                            <i class="fas fa-lightbulb" style="font-size: 3rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Concept</span>
+                        </div>
+                        <h3 class="card-title">Future Project</h3>
+                        <p class="card-description">Exciting game concept in the planning phase. Combining innovative gameplay with stunning visuals.</p>
+                        <button class="card-button" disabled style="opacity: 0.5;">
+                            <span>Coming Soon</span>
+                            <i class="fas fa-rocket"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D Models Section -->
+        <section class="section fade-in" id="3d">
+            <div class="section-header">
+                <i class="fas fa-cube section-icon"></i>
+                <h2 class="section-title">3D Models & Sculptures</h2>
+                <p class="section-subtitle">Three-dimensional artistry bringing imagination to life</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card" style="animation-delay: 0.1s;">
+                    <div class="card-image-container">
+                        <img src="images/goblinfront.jpg" alt="Sculptures" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-eye" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-hammer"></i>
+                            <span>Sculpture</span>
+                        </div>
+                        <h3 class="card-title">Character Sculptures</h3>
+                        <p class="card-description">A collection of three meticulously crafted sculptured characters showcasing detailed artistry and creativity.</p>
+                        <a href="sculpt.html" class="card-button">
+                            <span>View Gallery</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card" style="animation-delay: 0.2s;">
+                    <div class="card-image-container">
+                        <img src="images/qudsrender.png" alt="3D Models" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-cube" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-cube"></i>
+                            <span>3D Modeling</span>
+                        </div>
+                        <h3 class="card-title">3D Model Collection</h3>
+                        <p class="card-description">Diverse collection of 3D models featuring architectural elements, characters, and environmental assets.</p>
+                        <a href="3d.html" class="card-button">
+                            <span>Explore Models</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card" style="animation-delay: 0.3s;">
+                    <div class="card-image-container">
+                        <div style="height: 100%; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: 600;">
+                            <i class="fas fa-tools" style="font-size: 3rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-clock"></i>
+                            <span>Upcoming</span>
+                        </div>
+                        <h3 class="card-title">New 3D Project</h3>
+                        <p class="card-description">Exciting new 3D modeling project featuring advanced techniques and innovative design approaches.</p>
+                        <button class="card-button" disabled style="opacity: 0.5;">
+                            <span>Coming Soon</span>
+                            <i class="fas fa-hourglass-half"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Design Section -->
+        <section class="section fade-in" id="design">
+            <div class="section-header">
+                <i class="fas fa-palette section-icon"></i>
+                <h2 class="section-title">Design & Illustration</h2>
+                <p class="section-subtitle">Visual storytelling through creative design and illustration</p>
+            </div>
+            <div class="cards-grid">
+                <div class="card" style="animation-delay: 0.1s;">
+                    <div class="card-image-container">
+                        <img src="images/icecream.png" alt="Illustrations" class="card-image">
+                        <div class="card-overlay">
+                            <i class="fas fa-palette" style="font-size: 2rem;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-brush"></i>
+                            <span>Illustration</span>
+                        </div>
+                        <h3 class="card-title">Illustration Portfolio</h3>
+                        <p class="card-description">A diverse collection of illustrations showcasing various styles and creative approaches to visual storytelling.</p>
+                        <a href="illustrations.html" class="card-button">
+                            <span>View Gallery</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card" style="animation-delay: 0.2s;">
+                    <div class="card-image-container">
+                        <div style="height: 100%; background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: 600;">
+                            <i class="fas fa-pencil-ruler" style="font-size: 3rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-clock"></i>
+                            <span>In Progress</span>
+                        </div>
+                        <h3 class="card-title">Design Project</h3>
+                        <p class="card-description">New design project exploring innovative visual concepts and modern aesthetic approaches.</p>
+                        <button class="card-button" disabled style="opacity: 0.5;">
+                            <span>In Development</span>
+                            <i class="fas fa-cog fa-spin"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card" style="animation-delay: 0.3s;">
+                    <div class="card-image-container">
+                        <div style="height: 100%; background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: 600;">
+                            <i class="fas fa-paint-brush" style="font-size: 3rem; opacity: 0.7;"></i>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-category">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Concept</span>
+                        </div>
+                        <h3 class="card-title">Art Direction</h3>
+                        <p class="card-description">Upcoming art direction project combining traditional and digital techniques for unique visual experiences.</p>
+                        <button class="card-button" disabled style="opacity: 0.5;">
+                            <span>Coming Soon</span>
+                            <i class="fas fa-rocket"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+            <p>&copy; 2025 Bassam Qadumi. All rights reserved.</p>
+        </div>
+    </footer>
+
     <script>
-        // Add smooth scroll behavior for better UX
-        document.querySelectorAll('.card-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                // Add a subtle click effect
-                this.style.transform = 'translateY(0)';
-                setTimeout(() => {
-                    this.style.transform = '';
-                }, 150);
-                
-                // You can add navigation logic here
-                console.log('Navigating to:', this.closest('.card').querySelector('.card-title').textContent);
-            });
+        // Hide loading screen after page loads
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+            }, 1000);
         });
 
-        // Add intersection observer for scroll animations
+        // Intersection Observer for scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -417,19 +922,59 @@ It explores themes of mystery, tension, and survival in a fantasy setting.</p>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        // Initially hide cards for animation
-        document.querySelectorAll('.card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+        // Observe fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
         });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const shapes = document.querySelectorAll('.shape');
+            
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.2 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
+            });
+        });
+
+        // Add card hover sound effect (optional)
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                // Add subtle hover effect
+                card.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            });
+        });
+
+        // Mobile menu toggle (for future implementation)
+        const mobileMenuToggle = () => {
+            // Mobile menu functionality can be added here
+            console.log('Mobile menu toggle');
+        };
     </script>
 </body>
 </html>
