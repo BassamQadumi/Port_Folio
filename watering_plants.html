@@ -8,6 +8,7 @@
       margin: 0;
       font-family: sans-serif;
       background-color: #f0f0f0;
+      text-align: center; /* Center the button easily */
     }
 
     .gallery {
@@ -66,6 +67,25 @@
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
     }
+
+    /* Try it button */
+    .try-btn {
+      display: inline-block;
+      margin: 40px auto;
+      padding: 14px 28px;
+      background-color: #28a745;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .try-btn:hover {
+      background-color: #218838;
+    }
   </style>
 </head>
 <body>
@@ -88,11 +108,15 @@
     <div class="img-text">watering</div>
   </div>
   <div class="img-box" onclick="showPopup('images/flowers.png')">
-    <img src="images/flowers.png" alt="Image 4">
+    <img src="images/flowers.png" alt="Image 5">
     <div class="img-text">flowers</div>
   </div>
-  
 </div>
+
+<!-- Try it Button -->
+<button class="try-btn" onclick="window.open('https://gd.games/kumitcho/watering-plants', '_blank')">
+  🚀 Try it
+</button>
 
 <!-- Popup overlay -->
 <div class="popup" onclick="hidePopup()" id="popup">
@@ -112,9 +136,10 @@
   }
 </script>
 
-</body>
-</html>
-
+<!-- Home button -->
 <a href="index.html" style="position: fixed; top: 20px; left: 20px; padding: 10px 16px; background-color: #007bff; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; z-index: 999;">
   ⬅ Home
 </a>
+
+</body>
+</html>
