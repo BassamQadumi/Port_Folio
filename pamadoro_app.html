@@ -8,6 +8,7 @@
       margin: 0;
       font-family: sans-serif;
       background-color: #f0f0f0;
+      text-align: center;
     }
 
     .gallery {
@@ -66,6 +67,49 @@
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
     }
+
+    /* Download buttons */
+    .download-buttons {
+      margin: 40px 0;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .download-btn {
+      padding: 14px 28px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+      transition: background 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .windows {
+      background-color: gray;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .android {
+      background-color: #28a745;
+    }
+
+    .android:hover {
+      background-color: #218838;
+    }
+
+    .ios {
+      background-color: #007bff;
+    }
+
+    .ios:hover {
+      background-color: #0056b3;
+    }
   </style>
 </head>
 <body>
@@ -87,7 +131,13 @@
     <img src="images/05.png" alt="Image 4">
     <div class="img-text">Resting Screen</div>
   </div>
-  
+</div>
+
+<!-- Download Buttons -->
+<div class="download-buttons">
+  <button class="download-btn windows" disabled>Windows</button>
+  <a href="downloads/app-android.apk" class="download-btn android">Android</a>
+  <a href="downloads/app-ios.ipa" class="download-btn ios">iOS</a>
 </div>
 
 <!-- Popup overlay -->
@@ -108,10 +158,10 @@
   }
 </script>
 
-</body>
-</html>
-
+<!-- Home button -->
 <a href="index.html" style="position: fixed; top: 20px; left: 20px; padding: 10px 16px; background-color: #007bff; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; z-index: 999;">
   ⬅ Home
 </a>
 
+</body>
+</html>
